@@ -3,10 +3,7 @@ package countries;
 import java.io.IOException;
 
 import java.math.BigDecimal;
-import java.util.Comparator;
-import java.util.IntSummaryStatistics;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class Homework1 {
 
@@ -55,7 +52,7 @@ public class Homework1 {
      * Returns summary statistics about the number of country name translations associated with each country.
      */
     public IntSummaryStatistics streamPipeline6() {
-        return countries.stream().map(Country::getTranslations).mapToInt(t -> t.size()).summaryStatistics();
+        return countries.stream().map(Country::getTranslations).mapToInt(Map::size).summaryStatistics();
     }
 
     /**
@@ -105,7 +102,7 @@ public class Homework1 {
      * Prints all distinct regions of the countries with null area.
      */
     public void streamPipeline13() {
-        countries.stream().filter(country -> country.getArea() == null).map(country -> country.getRegion()).distinct().forEach(System.out::println);
+        countries.stream().filter(country -> country.getArea() == null).map(Country::getRegion).distinct().forEach(System.out::println);
     }
 
     /**
